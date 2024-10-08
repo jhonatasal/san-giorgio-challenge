@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
-public class SellerPaymentDTO {
+public class SellerPaymentResponseDTO {
 
     private UUID sellerCode;
-    private List<PaymentDTO> payments;
+    private List<PaymentResponseDTO> payments;
 
 }

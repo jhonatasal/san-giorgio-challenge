@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 @Data
-public class PaymentDTO {
+public class PaymentResponseDTO {
     private UUID chargeCode;
     private BigDecimal amountPaid;
     private PaymentStatus paymentStatus;

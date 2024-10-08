@@ -1,6 +1,5 @@
 package br.com.compass.uol.san_giorgio_challenge.usecase;
 
-import br.com.compass.uol.san_giorgio_challenge.entity.PaymentEntity;
 import br.com.compass.uol.san_giorgio_challenge.entity.SellerPaymentEntity;
 import br.com.compass.uol.san_giorgio_challenge.usecase.exception.PaymentNotFoundException;
 import br.com.compass.uol.san_giorgio_challenge.usecase.exception.SellerNotFoundException;
@@ -12,8 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.math.BigDecimal;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +24,7 @@ public class ValidatePaymentUseCase {
 
     private final SendPaymentGateway sendPaymentGateway;
 
-    public SellerPaymentEntity validate(SellerPaymentEntity sellerPaymentEntity) {
+    public SellerPaymentEntity execute(SellerPaymentEntity sellerPaymentEntity) {
         var seller = findSellerGateway.execute(sellerPaymentEntity.getSellerCode());
         if (seller == null)
             throw new SellerNotFoundException("Seller not found");

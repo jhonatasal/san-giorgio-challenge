@@ -25,6 +25,8 @@ public class ValidatePaymentUseCase {
     private final SendPaymentGateway sendPaymentGateway;
 
     public SellerPaymentEntity execute(SellerPaymentEntity sellerPaymentEntity) {
+        LOGGER.info("Processing Payment");
+
         var seller = findSellerGateway.execute(sellerPaymentEntity.getSellerCode());
         if (seller == null)
             throw new SellerNotFoundException("Seller not found");

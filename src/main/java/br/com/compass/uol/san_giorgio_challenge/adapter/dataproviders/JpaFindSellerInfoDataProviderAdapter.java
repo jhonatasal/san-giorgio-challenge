@@ -1,12 +1,8 @@
-package br.com.compass.uol.san_giorgio_challenge.adapter.dataproviders.jpa;
+package br.com.compass.uol.san_giorgio_challenge.adapter.dataproviders;
 
-import br.com.compass.uol.san_giorgio_challenge.adapter.dataproviders.jpa.repository.PaymentInfoRepository;
 import br.com.compass.uol.san_giorgio_challenge.adapter.dataproviders.jpa.repository.SellerInfoRepository;
-import br.com.compass.uol.san_giorgio_challenge.adapter.dataproviders.mapper.PaymentInfoMapper;
 import br.com.compass.uol.san_giorgio_challenge.adapter.dataproviders.mapper.SellerInfoMapper;
-import br.com.compass.uol.san_giorgio_challenge.usecase.gateway.FindPaymentInfoGateway;
 import br.com.compass.uol.san_giorgio_challenge.usecase.gateway.FindSellerGateway;
-import br.com.compass.uol.san_giorgio_challenge.usecase.model.PaymentInfo;
 import br.com.compass.uol.san_giorgio_challenge.usecase.model.SellerInfo;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package br.com.compass.uol.san_giorgio_challenge.adapter.dataproviders.jpa;
+package br.com.compass.uol.san_giorgio_challenge.adapter.dataproviders;
 
 import br.com.compass.uol.san_giorgio_challenge.adapter.dataproviders.jpa.repository.PaymentInfoRepository;
 import br.com.compass.uol.san_giorgio_challenge.adapter.dataproviders.mapper.PaymentInfoMapper;

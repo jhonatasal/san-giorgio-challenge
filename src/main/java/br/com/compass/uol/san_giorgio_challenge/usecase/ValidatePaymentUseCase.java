@@ -38,9 +38,8 @@ public class ValidatePaymentUseCase {
 
             payment.setAmount(paymentInfo.amount());
             payment.validateStatusPayment();
+            sendPaymentGateway.execute(payment);
         });
-
-        sendPaymentGateway.execute(sellerPaymentEntity);
 
         return sellerPaymentEntity;
     }

@@ -1,7 +1,7 @@
 package br.com.compass.uol.san_giorgio_challenge.usecase.gateway;
 
-import br.com.compass.uol.san_giorgio_challenge.entity.SellerPaymentEntity;
+import br.com.compass.uol.san_giorgio_challenge.entity.PaymentEntity;
 
 public interface SendPaymentGateway {
-    void execute(SellerPaymentEntity paymentEntity);
+    void execute(PaymentEntity paymentEntity);
 }

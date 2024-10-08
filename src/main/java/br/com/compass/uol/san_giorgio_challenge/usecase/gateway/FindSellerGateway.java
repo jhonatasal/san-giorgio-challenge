@@ -5,5 +5,5 @@ import br.com.compass.uol.san_giorgio_challenge.usecase.model.SellerInfo;
 import java.util.UUID;
 
 public interface FindSellerGateway {
-    SellerInfo execute(UUID uuid);
+    SellerInfo execute(UUID sellerCode);
 }

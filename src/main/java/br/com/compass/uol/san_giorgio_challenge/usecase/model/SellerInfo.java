@@ -1,7 +1,9 @@
 package br.com.compass.uol.san_giorgio_challenge.usecase.model;
 
-import java.util.UUID;
+import lombok.Builder;
 
+import java.util.UUID;
+@Builder
 public class SellerInfo {
     private String name;
 

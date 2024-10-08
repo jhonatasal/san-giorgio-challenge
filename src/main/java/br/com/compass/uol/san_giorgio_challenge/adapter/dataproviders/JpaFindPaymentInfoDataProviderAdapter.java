@@ -7,11 +7,11 @@ import br.com.compass.uol.san_giorgio_challenge.usecase.model.PaymentInfo;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
-@Service
+@Repository
 @RequiredArgsConstructor
 public class JpaFindPaymentInfoDataProviderAdapter implements FindPaymentInfoGateway {
 

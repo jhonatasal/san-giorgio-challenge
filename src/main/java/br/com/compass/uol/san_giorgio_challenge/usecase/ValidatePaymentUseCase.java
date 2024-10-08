@@ -8,9 +8,9 @@ import br.com.compass.uol.san_giorgio_challenge.usecase.gateway.FindSellerGatewa
 import br.com.compass.uol.san_giorgio_challenge.usecase.gateway.SendPaymentGateway;
 import br.com.compass.uol.san_giorgio_challenge.usecase.model.PaymentInfo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor

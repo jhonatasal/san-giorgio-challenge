@@ -1,25 +1,24 @@
 package br.com.compass.uol.san_giorgio_challenge.adapter.entrypoint.rest;
 
+import br.com.compass.uol.san_giorgio_challenge.adapter.dataproviders.queue.SqsService;
 import br.com.compass.uol.san_giorgio_challenge.adapter.entrypoint.dto.request.PaymentRequestDTO;
 import br.com.compass.uol.san_giorgio_challenge.adapter.entrypoint.dto.request.SellerPaymentRequestDTO;
 import br.com.compass.uol.san_giorgio_challenge.adapter.entrypoint.dto.response.PaymentStatus;
-import br.com.compass.uol.san_giorgio_challenge.adapter.entrypoint.dto.response.SellerPaymentResponseDTO;
-import br.com.compass.uol.san_giorgio_challenge.adapter.entrypoint.mapper.SellerPaymentMapper;
 import br.com.compass.uol.san_giorgio_challenge.usecase.gateway.FindPaymentInfoGateway;
 import br.com.compass.uol.san_giorgio_challenge.usecase.gateway.FindSellerGateway;
-import br.com.compass.uol.san_giorgio_challenge.usecase.gateway.SendPaymentGateway;
 import br.com.compass.uol.san_giorgio_challenge.usecase.model.PaymentInfo;
 import br.com.compass.uol.san_giorgio_challenge.usecase.model.SellerInfo;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -28,14 +27,14 @@ class PaymentControllerTest {
     @Autowired
     PaymentController paymentController;
 
-    @Mock
+    @MockBean
     FindPaymentInfoGateway findPaymentInfoGateway;
 
-    @Mock
+    @MockBean
     FindSellerGateway findSellerGateway;
 
-    @Mock
-    SendPaymentGateway sendPaymentGateway;
+    @MockBean
+    SqsService sqsService;
 
 
     @Test

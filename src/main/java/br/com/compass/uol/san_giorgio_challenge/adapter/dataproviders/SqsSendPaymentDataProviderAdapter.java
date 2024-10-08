@@ -2,9 +2,7 @@ package br.com.compass.uol.san_giorgio_challenge.adapter.dataproviders;
 
 import br.com.compass.uol.san_giorgio_challenge.adapter.dataproviders.queue.SqsService;
 import br.com.compass.uol.san_giorgio_challenge.entity.PaymentEntity;
-import br.com.compass.uol.san_giorgio_challenge.entity.SellerPaymentEntity;
 import br.com.compass.uol.san_giorgio_challenge.usecase.gateway.SendPaymentGateway;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

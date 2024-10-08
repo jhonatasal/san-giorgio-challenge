@@ -4,12 +4,10 @@ import br.com.compass.uol.san_giorgio_challenge.adapter.dataproviders.jpa.reposi
 import br.com.compass.uol.san_giorgio_challenge.adapter.dataproviders.mapper.SellerInfoMapper;
 import br.com.compass.uol.san_giorgio_challenge.usecase.gateway.FindSellerGateway;
 import br.com.compass.uol.san_giorgio_challenge.usecase.model.SellerInfo;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 

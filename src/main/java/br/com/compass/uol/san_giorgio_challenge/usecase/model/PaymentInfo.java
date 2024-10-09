@@ -1,6 +1,7 @@
 package br.com.compass.uol.san_giorgio_challenge.usecase.model;
 
 import lombok.Builder;
+import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 import java.util.UUID;

@@ -1,22 +1,13 @@
 version: '3.8'
 
 services:
-  localstack:
-    image: localstack/localstack
-    container_name: localstack
-    environment:
-      - SERVICES=sqs
-      - GATEWAY_LISTEN=4566
-      - AWS_DEFAULT_REGION=us-east-1
-      - AWS_ACCESS_KEY_ID=fakeAccessKey
-      - AWS_SECRET_ACCESS_KEY=fakeSecretKey
+  elasticmq:
+    image: softwaremill/elasticmq-native
+    container_name: elasticmq
     ports:
-      - "4566:4566"
-      - "4510-4559:4510-4559"
-    volumes:
-      - "./localstack:/var/lib/localstack"
-    networks:
-      - san-giorgio-network
+      - "9324:9324"
+      - "9325:9325"
+    network_mode: host
 
   db:
     image: postgres:16
@@ -29,8 +20,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    networks:
-      - san-giorgio-network
+    network_mode: host
 
   app:
     build:
@@ -38,10 +28,10 @@ services:
       dockerfile: Dockerfile
     container_name: san-giorgio-api
     environment:
-      POSTGRES_URL: jdbc:postgresql://db:5432/san-giorgio-challenge
+      POSTGRES_URL: jdbc:postgresql://localhost:5432/san-giorgio-challenge
       POSTGRES_USER: san-giorgio
       POSTGRES_PASSWORD: san-giorgio
-      AWS_ENDPOINT: http://localstack:4566
+      AWS_ENDPOINT: http://localhost:9324
       AWS_DEFAULT_REGION: us-east-1
       AWS_ACCESS_KEY_ID: fakeAccessKey
       AWS_SECRET_ACCESS_KEY: fakeSecretKey
@@ -50,17 +40,13 @@ services:
       - "8080:8080"
     depends_on:
       - db
-      - localstack
+      - elasticmq
     deploy:
       restart_policy:
         condition: on-failure
         delay: 5s
         max_attempts: 3
-    networks:
-      - san-giorgio-network
-
-networks:
-  san-giorgio-network:
+    network_mode: host
 
 volumes:
   postgres_data:

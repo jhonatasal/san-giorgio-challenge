@@ -4,6 +4,7 @@ import br.com.compass.uol.san_giorgio_challenge.adapter.entrypoint.dto.request.S
 import br.com.compass.uol.san_giorgio_challenge.adapter.entrypoint.dto.response.SellerPaymentResponseDTO;
 import br.com.compass.uol.san_giorgio_challenge.adapter.entrypoint.mapper.SellerPaymentMapper;
 import br.com.compass.uol.san_giorgio_challenge.usecase.ValidatePaymentUseCase;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/v1/seller/payment")
+@Tag(name = "Seller Payment")
 public class PaymentController {
 
     private final ValidatePaymentUseCase validatePaymentUseCase;

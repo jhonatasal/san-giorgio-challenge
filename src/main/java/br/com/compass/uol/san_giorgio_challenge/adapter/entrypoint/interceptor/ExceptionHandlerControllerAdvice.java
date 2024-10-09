@@ -3,16 +3,21 @@ package br.com.compass.uol.san_giorgio_challenge.adapter.entrypoint.interceptor;
 
 import br.com.compass.uol.san_giorgio_challenge.usecase.exception.PaymentNotFoundException;
 import br.com.compass.uol.san_giorgio_challenge.usecase.exception.SellerNotFoundException;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
 
-@ControllerAdvice
+import java.util.ArrayList;
+import java.util.List;
+
+@RestControllerAdvice
 public class ExceptionHandlerControllerAdvice {
 
     private final Logger LOGGER = LoggerFactory.getLogger(ExceptionHandlerControllerAdvice.class);
@@ -21,6 +26,29 @@ public class ExceptionHandlerControllerAdvice {
 
     public static final String GENERIC_EXCEPTION = "Generic exception: ";
 
+    public static final String ARGUMENT_NOT_VALID_EXCEPTION = "Argument not valid exception: ";
+
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public @ResponseBody ResponseEntity<ErrorDTO> handleMethodArgumentNotValidException(
+            final MethodArgumentNotValidException methodArgumentNotValidException) {
+        LOGGER.error(ARGUMENT_NOT_VALID_EXCEPTION, methodArgumentNotValidException);
+
+        final List<String> errors = new ArrayList<>();
+
+        for (final FieldError error : methodArgumentNotValidException.getBindingResult().getFieldErrors()) {
+            errors.add(error.getField() + ": " + error.getDefaultMessage());
+        }
+
+        for (final ObjectError error : methodArgumentNotValidException.getBindingResult().getGlobalErrors()) {
+            errors.add(error.getObjectName() + ": " + error.getDefaultMessage());
+        }
+
+        return new ResponseEntity<>(ErrorDTO.builder()
+                .code(HttpStatus.BAD_REQUEST.value())
+                .message(errors.toString()).build(), HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler({ SellerNotFoundException.class })
     @ResponseStatus(HttpStatus.NOT_FOUND)

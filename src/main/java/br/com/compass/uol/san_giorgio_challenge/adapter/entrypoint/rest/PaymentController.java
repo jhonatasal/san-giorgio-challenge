@@ -5,6 +5,7 @@ import br.com.compass.uol.san_giorgio_challenge.adapter.entrypoint.dto.response.
 import br.com.compass.uol.san_giorgio_challenge.adapter.entrypoint.mapper.SellerPaymentMapper;
 import br.com.compass.uol.san_giorgio_challenge.usecase.ValidatePaymentUseCase;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,7 +24,7 @@ public class PaymentController {
     private final SellerPaymentMapper sellerPaymentMapper;
 
     @PutMapping
-    public ResponseEntity<SellerPaymentResponseDTO> validatePayment(@RequestBody SellerPaymentRequestDTO sellerPaymentRequest) {
+    public ResponseEntity<SellerPaymentResponseDTO> validatePayment(@RequestBody @Valid SellerPaymentRequestDTO sellerPaymentRequest) {
         var sellerPaymentEntity = sellerPaymentMapper.toEntity(sellerPaymentRequest);
         sellerPaymentEntity = validatePaymentUseCase.execute(sellerPaymentEntity);
 
